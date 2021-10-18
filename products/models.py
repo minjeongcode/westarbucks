@@ -13,24 +13,24 @@ class Menu(models.Model):
 
 class Category(models.Model):
   name = models.CharField(max_length=20)
-  menu_id = models.ForeignKey('Menu', on_delete=models.CASCADE)
+  menu = models.ForeignKey('Menu', on_delete=models.CASCADE)
 
   class Meta:
     db_table = 'categories'
 
 class Product(models.Model):
-  category_id = models.ForeignKey('Category', on_delete=models.CASCADE)
+  category = models.ForeignKey('Category', on_delete=models.CASCADE)
   korean_name = models.CharField(max_length=45)
   english_name = models.CharField(max_length=45)
   description = models.TextField()
-  nutrition_id = models.ForeignKey('Nutrition', on_delete=models.CASCADE)
+  nutrition = models.ForeignKey('Nutrition', on_delete=models.CASCADE)
 
   class Meta:
     db_table = 'products'
 
 class Image(models.Model):
   image_url = models.CharField(max_length=2000)
-  product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
+  product = models.ForeignKey('Product', on_delete=models.CASCADE)
 
   class Meta:
     db_table = 'images'
@@ -55,8 +55,8 @@ class Allergy(models.Model):
     db_table = 'allergy'
 
 class Allergy_products(models.Model):
-  allergy_id = models.ForeignKey('Allergy', on_delete=models.CASCADE)
-  product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
+  allergy = models.ForeignKey('Allergy', on_delete=models.CASCADE)
+  product = models.ForeignKey('Product', on_delete=models.CASCADE)
 
   class Meta:
     db_table = 'allergy_products'
